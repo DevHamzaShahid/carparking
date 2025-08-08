@@ -1,97 +1,256 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Google Maps Clone - React Native
 
-# Getting Started
+A comprehensive Google Maps clone built with React Native that replicates core features such as real-time navigation, location tracking, route rendering, and full integration with device sensors (accelerometer, gyroscope, and magnetometer) for compass functionality.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Features
 
-## Step 1: Start Metro
+### Core Navigation Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Real-time Navigation**: Turn-by-turn navigation with smooth camera animations
+- **Location Tracking**: High-accuracy GPS tracking with continuous updates
+- **Route Rendering**: Visual route display with polyline overlays
+- **Destination Markers**: Clear destination and waypoint markers
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Compass & Sensor Integration
 
-```sh
-# Using npm
-npm start
+- **Device Compass**: Real-time compass using magnetometer, accelerometer, and gyroscope
+- **Dynamic Map Orientation**: Map automatically aligns with user's real-world direction
+- **Calibration Status**: Visual feedback for compass calibration
+- **Smooth Heading Detection**: Accurate heading calculation with sensor fusion
 
-# OR using Yarn
-yarn start
-```
+### Camera & Animation
 
-## Step 2: Build and run your app
+- **Auto-follow Mode**: Camera automatically follows user's movement and heading
+- **Smooth Animations**: Fluid camera transitions during navigation
+- **3D Perspective**: Tilted view during navigation for better orientation
+- **Zoom Optimization**: Automatic zoom adjustment based on context
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### User Interface
 
-### Android
+- **Professional UI**: Clean, modern interface similar to Google Maps
+- **Navigation Overlay**: Turn-by-turn instructions with progress tracking
+- **Map Controls**: Easy switching between map types (standard, satellite, hybrid)
+- **Location Button**: Quick return to user's current location
+- **Compass Overlay**: Visual compass with calibration status
 
-```sh
-# Using npm
-npm run android
+### Performance & Accuracy
 
-# OR using Yarn
-yarn android
-```
+- **High Performance**: Optimized for smooth 60fps animations
+- **Accurate Sensors**: Proper sensor fusion for reliable compass readings
+- **Responsive UI**: No noticeable lag in animations or updates
+- **Battery Efficient**: Optimized location and sensor tracking
 
-### iOS
+## 📱 Screenshots
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+_[Screenshots will be added after running the app]_
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## 🛠 Installation
 
-```sh
-bundle install
-```
+### Prerequisites
 
-Then, and every time you update your native dependencies, run:
+- Node.js (v18 or higher)
+- React Native CLI
+- Android Studio (for Android development)
+- Xcode (for iOS development)
+- Google Maps API Key
 
-```sh
-bundle exec pod install
-```
+### Setup Instructions
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+1. **Clone the repository**
 
-```sh
-# Using npm
-npm run ios
+   ```bash
+   git clone <repository-url>
+   cd parkingApp
+   ```
 
-# OR using Yarn
-yarn ios
-```
+2. **Install dependencies**
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+3. **Install iOS dependencies (iOS only)**
 
-## Step 3: Modify your app
+   ```bash
+   cd ios && pod install && cd ..
+   ```
 
-Now that you have successfully run the app, let's make changes!
+4. **Configure Google Maps API**
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+   **For Android:**
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+   - Get a Google Maps API key from [Google Cloud Console](https://console.cloud.google.com/)
+   - Add the API key to `android/app/src/main/AndroidManifest.xml`:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+   ```xml
+   <meta-data
+     android:name="com.google.android.geo.API_KEY"
+     android:value="YOUR_API_KEY_HERE"/>
+   ```
 
-## Congratulations! :tada:
+   **For iOS:**
 
-You've successfully run and modified your React Native App. :partying_face:
+   - Add the API key to `ios/AppDelegate.mm`:
 
-### Now what?
+   ```objc
+   [GMSServices provideAPIKey:@"YOUR_API_KEY_HERE"];
+   ```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+5. **Configure permissions**
 
-# Troubleshooting
+   **Android:**
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+   - Ensure the following permissions are in `android/app/src/main/AndroidManifest.xml`:
 
-# Learn More
+   ```xml
+   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+   <uses-permission android:name="android.permission.INTERNET" />
+   ```
 
-To learn more about React Native, take a look at the following resources:
+   **iOS:**
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+   - Add location usage descriptions to `ios/Info.plist`:
+
+   ```xml
+   <key>NSLocationWhenInUseUsageDescription</key>
+   <string>This app needs location access to provide navigation features.</string>
+   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+   <string>This app needs location access to provide navigation features.</string>
+   ```
+
+6. **Run the application**
+
+   **Android:**
+
+   ```bash
+   npx react-native run-android
+   ```
+
+   **iOS:**
+
+   ```bash
+   npx react-native run-ios
+   ```
+
+## 🎯 Usage
+
+### Basic Navigation
+
+1. **Start the app** - The app will request location permissions
+2. **Wait for GPS lock** - The blue dot shows your current location
+3. **Tap anywhere on the map** - This sets a destination and starts navigation
+4. **Follow the route** - Turn-by-turn instructions appear at the top
+
+### Compass Features
+
+- **Automatic orientation** - The map rotates to match your real-world direction
+- **Compass calibration** - The compass icon shows calibration status
+- **Manual reset** - Tap the compass to reset to north-up orientation
+
+### Map Controls
+
+- **Map type selector** - Switch between standard, satellite, and hybrid views
+- **Location button** - Tap to center the map on your current location
+- **Navigation controls** - Stop navigation or view route details
+
+## 🏗 Architecture
+
+### Services
+
+- **LocationService**: Handles GPS tracking and location permissions
+- **SensorService**: Manages device sensors (accelerometer, gyroscope, magnetometer)
+- **NavigationService**: Handles route calculation and navigation state
+
+### Components
+
+- **MapView**: Main map component with all overlays
+- **CompassOverlay**: Visual compass with rotation animations
+- **NavigationOverlay**: Turn-by-turn instructions and progress
+- **LocationButton**: Quick location centering
+- **MapControls**: Map type selection and controls
+
+### Hooks
+
+- **useMapState**: Custom hook for managing map state and services
+
+### Utils
+
+- **calculations.ts**: Mathematical utilities for distance, bearing, and coordinate calculations
+
+## 🔧 Configuration
+
+### Sensor Configuration
+
+The app uses the following sensor settings:
+
+- **Accelerometer**: 100Hz sampling rate
+- **Gyroscope**: 100Hz sampling rate
+- **Magnetometer**: 100Hz sampling rate
+- **GPS**: High accuracy mode, 5m distance filter
+
+### Performance Settings
+
+- **Animation duration**: 500ms for smooth transitions
+- **Location update interval**: 1 second
+- **Compass update rate**: 300ms for responsive heading
+- **Camera animation**: 1000ms for route following
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Location not working:**
+
+- Ensure location permissions are granted
+- Check if GPS is enabled on the device
+- Verify Google Maps API key is correctly configured
+
+**Compass not calibrating:**
+
+- Move the device in a figure-8 pattern
+- Ensure you're away from magnetic interference
+- Check if device has magnetometer sensor
+
+**App crashes on startup:**
+
+- Clear build cache: `npx react-native start --reset-cache`
+- Reinstall dependencies: `rm -rf node_modules && npm install`
+- For iOS: `cd ios && pod install && cd ..`
+
+**Performance issues:**
+
+- Ensure device has sufficient RAM
+- Close other GPS-intensive apps
+- Check if battery saver mode is disabled
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -am 'Add feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request
+
+## 📞 Support
+
+For support and questions:
+
+- Create an issue in the repository
+- Check the troubleshooting section above
+- Review the React Native documentation
+
+## 🔄 Updates
+
+This app is actively maintained and updated with:
+
+- Latest React Native versions
+- New Google Maps features
+- Performance optimizations
+- Bug fixes and improvements
